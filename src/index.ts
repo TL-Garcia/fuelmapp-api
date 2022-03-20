@@ -1,30 +1,15 @@
-import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
-import { Server, IncomingMessage, ServerResponse } from 'http';
+import Fastify from 'fastify';
+import { Router } from './routes';
 
-const server = Fastify({});
-
-const opts: RouteShorthandOptions = {
-  schema: {
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          pong: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
-};
-
-server.get('/ping', opts, async (request, reply) => {
-  return { pong: 'it worked!' };
-});
+export const server = Fastify({ logger: true });
 
 const start = async () => {
+  const {
+    env: { PORT = '3000' },
+  } = process;
+
   try {
-    await server.listen(3000);
+    typeof PORT === 'string' && (await server.listen(PORT));
 
     const address = server.server.address();
     const port = typeof address === 'string' ? address : address?.port;
@@ -33,4 +18,6 @@ const start = async () => {
     process.exit(1);
   }
 };
+
+server.register(Router);
 start();
