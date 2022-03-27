@@ -1,9 +1,6 @@
-// controllers
-import { getStationsController } from './stations.controller';
-
-// types
 import { FastifyInstance } from 'fastify';
+import * as stationHandlers from './stations.handler';
 
 export const stationRoutes = async (server: FastifyInstance) => {
-  server.get('/stations', getStationsController);
+  server.get('/stations', stationHandlers.getAllStations);
 };
