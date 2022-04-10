@@ -6,6 +6,9 @@ const schema = {
       type: 'string',
       default: 3000,
     },
+    DB_URI: {
+      type: 'string',
+    },
   },
 };
 

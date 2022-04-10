@@ -4,6 +4,7 @@ declare module 'fastify' {
   interface FastifyInstance extends RealFastify {
     config: {
       PORT: string;
+      DB_URI: string;
     };
   }
 }
