@@ -3,18 +3,15 @@ import fastifyEnv from 'fastify-env';
 import fastifyMongodb from 'fastify-mongodb';
 
 import { Router } from './routes';
-import { envConfig } from './config';
+import { ENV_CONFIG, getDbConfig } from './config';
 
 export const buildServer = async (options?: any) => {
   const server = Fastify(options);
 
-  await server.register(fastifyEnv, envConfig);
+  await server.register(fastifyEnv, ENV_CONFIG);
   server.register(Router);
 
-  server.register(fastifyMongodb, {
-    forceClose: true,
-    url: server.config.DB_URI,
-  });
+  server.register(fastifyMongodb, getDbConfig(server.config));
 
   return server;
 };

@@ -1,4 +1,9 @@
-const schema = {
+export type ENV = {
+  PORT: string;
+  DB_URI: string;
+};
+
+const SCHEMA = {
   type: 'object',
   required: ['PORT'],
   properties: {
@@ -12,7 +17,7 @@ const schema = {
   },
 };
 
-export const envConfig = {
-  schema,
+export const ENV_CONFIG = {
+  SCHEMA,
   dotenv: true,
 };
