@@ -18,6 +18,6 @@ const SCHEMA = {
 };
 
 export const ENV_CONFIG = {
-  SCHEMA,
+  schema: SCHEMA,
   dotenv: true,
 };

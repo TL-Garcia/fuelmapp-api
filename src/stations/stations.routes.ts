@@ -1,6 +1,16 @@
 import { FastifyInstance } from 'fastify';
-import * as stationHandlers from './stations.handler';
+import { StationsService } from './stations.service';
 
 export const stationRoutes = async (server: FastifyInstance) => {
-  server.get('/stations', stationHandlers.getAllStations);
+  const Stations = new StationsService(server);
+
+  server.decorate('Stations', Stations);
+
+  server.get('/station', async (req, res) => {
+    const { Stations } = server;
+
+    const station = await Stations.getOne();
+
+    res.send(station);
+  });
 };

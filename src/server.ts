@@ -9,9 +9,10 @@ export const buildServer = async (options?: any) => {
   const server = Fastify(options);
 
   await server.register(fastifyEnv, ENV_CONFIG);
-  server.register(Router);
 
   server.register(fastifyMongodb, getDbConfig(server.config));
+
+  server.register(Router);
 
   return server;
 };

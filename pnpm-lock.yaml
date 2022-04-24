@@ -657,7 +657,7 @@ packages:
     resolution: {integrity: sha512-0L1ix8eXI+U0Ojr0B50G49eagEz4RF1Z/pzSn9pkB3JRZlMItM31MmQReid65wJ58128IsgsTrSgCq+3YV5FQw==}
     dependencies:
       fastify-plugin: 3.0.1
-      mongodb: 4.4.1
+      mongodb: 4.5.0
     dev: false
 
   /fastify-plugin/3.0.1:
@@ -1034,8 +1034,8 @@ packages:
       whatwg-url: 11.0.0
     dev: false
 
-  /mongodb/4.4.1:
-    resolution: {integrity: sha512-IAD3nFtCR4s22vi5qjqkCBnuyDDrOW8WVSSmgHquOvGaP1iTD+XpC5tr8wAUbZ2EeZkaswwBKQFHDvl4qYcKqQ==}
+  /mongodb/4.5.0:
+    resolution: {integrity: sha512-A2l8MjEpKojnhbCM0MK3+UOGUSGvTNNSv7AkP1fsT7tkambrkkqN/5F2y+PhzsV0Nbv58u04TETpkaSEdI2zKA==}
     engines: {node: '>=12.9.0'}
     dependencies:
       bson: 4.6.2
