@@ -9,7 +9,9 @@ export const stationRoutes = async (server: FastifyInstance) => {
   server.get('/station', async (req, res) => {
     const { Stations } = server;
 
-    const station = await Stations.getOne();
+    const { query } = req;
+
+    const station = await Stations.getOne(query);
 
     res.send(station);
   });

@@ -4,7 +4,7 @@ import { ENV } from '../../config';
 
 declare global {
   interface Service<Document> {
-    getOne: () => Document[];
+    getOne: (query?: any) => Document[];
   }
 }
 
