@@ -24,4 +24,9 @@ export class StationsService implements Service<Station> {
   getOne(query?: StationQuery) {
     return this.#collection.findOne(query);
   }
+
+  async updateAll(stations: Station[]) {
+    await this.#collection.drop();
+    this.#collection.insertMany(stations);
+  }
 }

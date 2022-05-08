@@ -2,7 +2,7 @@ import Fastify from 'fastify';
 import fastifyEnv from 'fastify-env';
 import fastifyMongodb from 'fastify-mongodb';
 
-import { Router } from './routes';
+import { Router } from './router';
 import { ENV_CONFIG, getDbConfig } from './config';
 
 export const buildServer = async (options?: any) => {

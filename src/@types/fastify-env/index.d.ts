@@ -4,6 +4,7 @@ import { ENV } from '../../config';
 
 declare global {
   interface Service<Document> {
+    updateAll: (documents: Document[]) => Promise<void>;
     getOne: (query?: any) => Document[];
   }
 }
