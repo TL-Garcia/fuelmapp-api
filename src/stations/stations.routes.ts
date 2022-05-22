@@ -11,7 +11,6 @@ export const stationRoutes = async (server: FastifyInstance) => {
   server.decorate('Stations', Stations);
 
   server.get('/station', async (req: QueryRequest<StationQuery>, res) => {
-    req.query;
     const { query } = req;
 
     const station = await Stations.getOne(query);
