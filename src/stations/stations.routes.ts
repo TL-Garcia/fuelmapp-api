@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import { StationsService } from './stations.service';
+import { StationsService, StationQuery } from './stations.service';
 import { mapToStation } from './station.mapper';
 
 const GOV_ENDPOINT =
@@ -10,9 +10,8 @@ export const stationRoutes = async (server: FastifyInstance) => {
 
   server.decorate('Stations', Stations);
 
-  server.get('/station', async (req, res) => {
-    const { Stations } = server;
-
+  server.get('/station', async (req: QueryRequest<StationQuery>, res) => {
+    req.query;
     const { query } = req;
 
     const station = await Stations.getOne(query);
@@ -21,11 +20,9 @@ export const stationRoutes = async (server: FastifyInstance) => {
   });
 
   server.get('/station/update-db', async (req, res) => {
-    const { Stations } = server;
-
     const govResponse = await fetch(GOV_ENDPOINT);
     const parsedResponse = await govResponse.json();
-    const rawStations = parsedResponse['ListaEESSPrecio'];
+    const rawStations = parsedResponse;
 
     const stations = rawStations.map(mapToStation);
 

@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { Station } from './station.type';
 
-type StationQuery = {};
+export type StationQuery = {};
 
 // TODO: extract the logic for decorating the fastify instance
 // with the service into a parent Service class

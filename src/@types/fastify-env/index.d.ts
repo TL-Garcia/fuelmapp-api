@@ -1,4 +1,4 @@
-import { FastifyInstance as RealFastify } from 'fastify';
+import { FastifyInstance as RealFastify, FastifyRequest } from 'fastify';
 
 import { ENV } from '../../config';
 
@@ -7,6 +7,7 @@ declare global {
     updateAll: (documents: Document[]) => Promise<void>;
     getOne: (query?: any) => Document[];
   }
+  type QueryRequest<Query> = FastifyRequest<{ Querystring: { query: Query } }>;
 }
 
 declare module 'fastify' {
