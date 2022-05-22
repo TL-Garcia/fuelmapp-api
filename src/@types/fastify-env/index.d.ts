@@ -4,8 +4,9 @@ import { ENV } from '../../config';
 
 declare global {
   interface Service<Document> {
-    updateAll: (documents: Document[]) => Promise<void>;
+    checkIsDataStale: (maxAge: number) => Promise<boolean>;
     getOne: (query?: any) => Document[];
+    updateAll: (documents: Document[]) => Promise<void>;
   }
   type QueryRequest<Query> = FastifyRequest<{ Querystring: { query: Query } }>;
 }

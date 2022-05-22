@@ -6,7 +6,8 @@ export type StationQuery = {};
 // TODO: extract the logic for decorating the fastify instance
 // with the service into a parent Service class
 export class StationsService implements Service<Station> {
-  #collection: any;
+  #collection: any; // TODO: Properly type as Collection
+  #cacheData: any;
 
   constructor(server: FastifyInstance) {
     if (!server.ready) throw new Error(`can't get .ready from fastify server.`);
@@ -18,7 +19,9 @@ export class StationsService implements Service<Station> {
 
     const db = mongo.db;
     const collection = db.collection('stations');
+    const cacheData = db.collection('cacheData');
     this.#collection = collection;
+    this.#cacheData = cacheData;
   }
 
   getOne(query?: StationQuery) {
@@ -28,5 +31,18 @@ export class StationsService implements Service<Station> {
   async updateAll(stations: Station[]) {
     await this.#collection.drop();
     this.#collection.insertMany(stations);
+    this.#cacheData.update(
+      { description: 'Stations update' },
+      { updatedAt: new Date() },
+      { upsert: true }
+    );
+  }
+
+  async checkIsDataStale(maxAge: number) {
+    const { updatedAt } = await this.#cacheData.findOne();
+
+    const age = Date.now() - updatedAt.getTime();
+
+    return age >= maxAge;
   }
 }
