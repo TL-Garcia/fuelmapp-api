@@ -18,7 +18,6 @@ export const stationRoutes = async (server: FastifyInstance) => {
 
     if (isDataStale) {
       updateDb();
-      console.log('### Updating db');
     }
 
     const station = await Stations.getOne(query);
