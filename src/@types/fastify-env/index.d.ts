@@ -13,7 +13,8 @@ declare global {
 
 declare module 'fastify' {
   interface FastifyInstance extends RealFastify {
-    config: ENV;
+    connectDb: (dbURI: string) => void;
+    loadRoutes: () => void;
     Stations: Service<any>;
   }
 }

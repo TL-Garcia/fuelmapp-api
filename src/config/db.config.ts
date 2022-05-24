@@ -1,6 +1,4 @@
-import { ENV } from './env.config';
-
-export const getDbConfig = (env: ENV) => ({
+export const getDbConfig = (dbURI: string) => ({
   forceClose: true,
-  url: env.DB_URI,
+  url: dbURI,
 });
