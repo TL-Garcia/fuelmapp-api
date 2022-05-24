@@ -1,8 +1,9 @@
 //
 import { buildServer } from './server';
-import dotenv from 'dotenv';
+import { loadEnv } from './config/env.config';
 
 const start = async (options?: any) => {
+  loadEnv();
   const server = await buildServer(options);
 
   const {
@@ -19,5 +20,4 @@ const start = async (options?: any) => {
   }
 };
 
-dotenv.config();
 start({ logger: true });

@@ -1,4 +1,5 @@
 node_modules
 built
 .env
+.env.local
 ./src/.pnpm-debug.log 
