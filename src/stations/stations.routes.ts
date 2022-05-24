@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import { StationsService, StationQuery } from './stations.service';
 import { mapToStation } from './station.mapper';
 
-const MAX_CACHE_AGE = 99e19;
+const MAX_CACHE_AGE = 99;
 const GOV_ENDPOINT =
   'https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/';
 
@@ -18,7 +18,6 @@ export const stationRoutes = async (server: FastifyInstance) => {
 
     if (isDataStale) {
       await updateDb();
-      console.log('### Updating db');
     }
 
     const station = await Stations.getOne(query);
@@ -33,7 +32,6 @@ export const stationRoutes = async (server: FastifyInstance) => {
     const rawStations = parsedResponse['ListaEESSPrecio'];
 
     const stations = rawStations.map(mapToStation);
-
-    await Stations.updateAll(stations);
+    Stations.updateAll(stations);
   };
 };

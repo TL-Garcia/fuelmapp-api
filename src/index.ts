@@ -17,4 +17,8 @@ const start = async (options?: any) => {
   }
 };
 
-start({ logger: true });
+start({
+  logger: {
+    prettyPrint: true,
+  },
+});

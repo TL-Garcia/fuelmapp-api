@@ -1,7 +1,6 @@
 import { Station } from './station.type';
 
 type RawStation = {
-  _id: string;
   'C.P.': string;
   Dirección: string;
   Horario: string;
@@ -55,20 +54,11 @@ export const mapToStation = (rawStation: RawStation): Station => {
   const petrolPrice = rawStation['Precio Gasolina 95 E5'];
 
   return {
+    _id: rawStation.IDEESS,
+    _updatedAt: new Date(),
     address,
     name: rawStation['Rótulo'],
     gasoil: parseESNumber(gasoilPrice),
     petrol: parseESNumber(petrolPrice),
   };
-};
-
-exports.handler = async (event: RawStation) => {
-  const station = mapToStation(event);
-
-  const response = {
-    statusCode: 200,
-    body: station,
-  };
-
-  return response;
 };

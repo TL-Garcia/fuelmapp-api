@@ -1,4 +1,6 @@
 export type Station = {
+  _id: string;
+  _updatedAt: Date;
   address: {
     county: string; // localidad
     town: string; // municipio
