@@ -31,7 +31,7 @@ export class StationsService implements Service<Station> {
   async updateAll(stations: Station[]) {
     await this.#collection.drop();
     this.#collection.insertMany(stations);
-    this.#cacheData.update(
+    this.#cacheData.replaceOne(
       { description: 'Stations update' },
       { updatedAt: new Date() },
       { upsert: true }
@@ -39,7 +39,13 @@ export class StationsService implements Service<Station> {
   }
 
   async checkIsDataStale(maxAge: number) {
-    const { updatedAt } = await this.#cacheData.findOne();
+    const insertMetadata = await this.#cacheData.findOne();
+
+    if (!insertMetadata) {
+      return true;
+    }
+
+    const { updatedAt } = insertMetadata;
 
     const age = Date.now() - updatedAt.getTime();
 

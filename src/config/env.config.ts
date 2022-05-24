@@ -21,5 +21,7 @@ const schema = {
 
 export const env = envSchema<Env>({
   schema,
-  dotenv: true,
+  dotenv: {
+    path: `.${process.env.NODE_ENV}.env`,
+  },
 });

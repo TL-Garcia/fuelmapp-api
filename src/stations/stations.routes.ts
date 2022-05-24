@@ -17,7 +17,7 @@ export const stationRoutes = async (server: FastifyInstance) => {
     const isDataStale = await Stations.checkIsDataStale(MAX_CACHE_AGE);
 
     if (isDataStale) {
-      updateDb();
+      await updateDb();
       console.log('### Updating db');
     }
 
@@ -29,7 +29,8 @@ export const stationRoutes = async (server: FastifyInstance) => {
   const updateDb = async () => {
     const govResponse = await fetch(GOV_ENDPOINT);
     const parsedResponse = await govResponse.json();
-    const rawStations = parsedResponse;
+
+    const rawStations = parsedResponse['ListaEESSPrecio'];
 
     const stations = rawStations.map(mapToStation);
 
