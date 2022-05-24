@@ -1,2 +1,2 @@
 export { getDbConfig } from './db.config';
-export { ENV } from './env.config';
+export { env } from './env.config';

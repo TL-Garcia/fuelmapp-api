@@ -1,13 +1,13 @@
 import { envSchema } from 'env-schema';
 
-export type ENV = {
+export type Env = {
   PORT: string;
   DB_URI: string;
 };
 
 const schema = {
   type: 'object',
-  required: ['PORT'],
+  required: ['DB_URI'],
   properties: {
     PORT: {
       type: 'string',
@@ -19,9 +19,7 @@ const schema = {
   },
 };
 
-export const loadEnv = () => {
-  envSchema({
-    schema,
-    dotenv: true,
-  });
-};
+export const env = envSchema<Env>({
+  schema,
+  dotenv: true,
+});

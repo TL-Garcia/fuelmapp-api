@@ -1,7 +1,5 @@
 import { FastifyInstance as RealFastify, FastifyRequest } from 'fastify';
 
-import { ENV } from '../../config';
-
 declare global {
   interface Service<Document> {
     checkIsDataStale: (maxAge: number) => Promise<boolean>;
