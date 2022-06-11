@@ -48,6 +48,10 @@ export const mapToStation = (rawStation: RawStation): Station => {
     province: rawStation.Provincia,
     street: rawStation['Dirección'],
     town: rawStation.Municipio,
+    coordinates: {
+      latitude: rawStation.Latitud,
+      longitude: rawStation['Longitud (WGS84)'],
+    },
   };
 
   const gasoilPrice = rawStation['Precio Gasoleo A'];
