@@ -2,7 +2,8 @@ import { FastifyInstance } from 'fastify';
 import { StationsService, StationQuery } from './stations.service';
 import { mapToStation } from './station.mapper';
 
-const MAX_CACHE_AGE = 99;
+const MAX_CACHE_AGE = Number(process.env.MAX_CACHE_AGE) || 9e9;
+
 const GOV_ENDPOINT =
   'https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/';
 
